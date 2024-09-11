@@ -79,7 +79,7 @@ $(document).ready(function() {
 
   $(function() {
     typed.typed({
-      strings: ["Zoe Lu", "UX UI Designer", "FrontEnd Developer", "Curious", "Collaborative"],
+      strings: ["Zoe Lu", "UX UI Designer", "Empathetic", "Creative", "Collaborative"],
       typeSpeed: 100,
       loop: true,
     });
