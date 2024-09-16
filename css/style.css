@@ -218,7 +218,7 @@ nav ul li a {
 }
 
 .logo img {
-  width: 170px;
+  width: 50px;
 }
 
 .responsive {
@@ -237,7 +237,7 @@ nav ul li a {
 #header {
   /*background: url("../images/home-bg.jpg") repeat scroll center center / cover;*/
   /* background-color: #001b27;*/
-  background-color: #1d3657;
+  background-color: #68a08b;
   height: 90vh;
   width: 100%;
 }
@@ -298,7 +298,7 @@ nav ul li a {
 
 #about .div-img-bg {
   padding-bottom: 30px;
-  border: 20px solid #2a83b5;
+  border: 20px solid #68a08b;
 }
 
 #about .div-img-bg .about-img img {
