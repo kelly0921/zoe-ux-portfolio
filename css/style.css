@@ -515,6 +515,14 @@ nav ul li a {
   line-height: 24px;
 }
 
+.journal-block .journal-info img {
+  width: 100%; /* Maintain responsiveness */
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
+  border-radius: 5px; /* Optional: Adds rounded corners */
+}
+
+
 /*-----------------------------------------------------------------------------------*/
 /*  Contact
 /*-----------------------------------------------------------------------------------*/
