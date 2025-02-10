@@ -109,6 +109,17 @@ h3.highlight {
   margin-left: 5px;
 }
 
+.image-container {
+  display: flex;
+  justify-content: center; /* Centers images horizontally */
+  gap: 10px; /* Adds spacing between images */
+}
+
+.image-container img {
+  width: 200px; /* Adjust as needed */
+  height: auto;
+}
+
 /* Commonts */
 
 .comments {
