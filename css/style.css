@@ -52,7 +52,7 @@ a:hover {
 }
 
 a:hover, a:focus {
-  color: #2a83b5;
+  color: #68a08b;
   text-decoration: underline;
 }
 
@@ -426,7 +426,7 @@ nav ul li a {
 }
 
 #portfolio .portfolio-list .nav li:hover, #portfolio .portfolio-list .nav li.filter-active  {
-  color: #2a83b5;
+  color: #68a08b;
   -moz-transition: all 0.5s ease-in-out 0s;
   -ms-transition: all 0.5s ease-in-out 0s;
   -o-transition: all 0.5s ease-in-out 0s;
@@ -501,7 +501,7 @@ nav ul li a {
 }
 
 .journal-block .journal-info .journal-txt h4 a:hover {
-  color: #2a83b5;
+  color: #68a08b;
   -moz-transition: all 0.5s ease-in-out 0s;
   -ms-transition: all 0.5s ease-in-out 0s;
   -o-transition: all 0.5s ease-in-out 0s;
