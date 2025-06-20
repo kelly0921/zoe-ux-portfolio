@@ -58,16 +58,16 @@
 
 .journal-txt h2 {
   font-size: 1.4rem;
-  color: v#67a08b;
+  color: #000;
 }
 
 .journal-txt h3 {
   font-size: 1.2rem;
-  color: #67a08b;
+  color: #000;
 }
 .journal-txt h4 {
   font-size: 1.1rem;
-  color: #67a08b;
+  color: #000;
 }
 
 .journal-txt h1, .journal-txt h2, .journal-txt h3, .journal-txt h4 {
