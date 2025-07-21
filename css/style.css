@@ -203,7 +203,7 @@ nav ul li a {
   padding: 2px 0 0 0;
   position: relative;
   display: block;
-  font-size: 14px;
+  font-size: 17px;
   color: #999999;
   font-family: 'Poppins', helvetica;
   font-weight: 500;
@@ -309,16 +309,27 @@ nav ul li a {
   object-fit: cover;
 }
 
+#about.paddsection {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 #about .about-descr .p-heading {
   font-weight: 600;
   font-size: 28px;
   text-align: left;
+  padding-top: 15px;
+  margin-top: 0;
 }
 
 #about .about-descr .separator {
   max-width: 80%;
   margin-bottom: 0;
   text-align: left;
+}
+
+#about .about-descr p:last-child {
+  margin-bottom: 0;
 }
 
 .swiper-container {
@@ -563,6 +574,40 @@ nav ul li a {
   border-radius: 5px; /* Optional: Adds rounded corners */
 }
 
+.journal-info {
+  overflow: hidden;
+  padding: 16px; /* adds space between image/text and the edge */
+  background-color: white; /* optional: creates a card effect */
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* subtle default shadow */
+}
+
+.journal-info img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  display: block;
+  border-radius: 8px; /* slightly round corners on image */
+}
+
+.journal-info:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* deeper shadow on hover */
+}
+
+.journal-info:hover img {
+  transform: scale(1.05);
+}
+
+.journal-block .col-lg-4,
+.journal-block .col-md-6 {
+  margin-bottom: 40px;
+}
+
+.journal-info {
+  will-change: transform;
+}
 
 /*-----------------------------------------------------------------------------------*/
 /*  Contact

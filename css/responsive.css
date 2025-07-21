@@ -143,6 +143,32 @@
   #journal .journal-block .journal-info {
     margin-bottom: 30px;
   }
+
+  .journal-info {
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px; /* Optional: gives rounded corners */
+}
+
+.journal-info img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.journal-info:hover {
+  transform: scale(1.03); /* Zoom effect */
+  border-color: #333;     /* Border color on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
+}
+
+.journal-info:hover img {
+  transform: scale(1.05); /* Slight zoom of the image */
+}
+
+
   /* Contact */
   .contact-contact {
     margin-bottom: 30px;
