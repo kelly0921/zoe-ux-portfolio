@@ -52,29 +52,36 @@
 }
 
 .journal-txt h1 {
-  font-size: 1.9rem;
+  font-size: 40px;
+  line-height: 1.3;
   color: #292929;
+  font-weight: 600;
 }
 
 .journal-txt h2 {
-  font-size: 1.4rem;
-  color: #000;
+  font-size: 28px;
+  line-height: 1.3;
+  color: #292929;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 
 .journal-txt h3 {
-  font-size: 1.2rem;
-  color: #000;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #292929;
+  font-weight: 600;
 }
 .journal-txt h4 {
-  font-size: 1.1rem;
-  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #292929;
+  font-weight: 600;
 }
 
 .journal-txt h1, .journal-txt h2, .journal-txt h3, .journal-txt h4 {
   display: block;
-  line-height: 24px;
   margin: 0 0 13px 0;
-  font-weight: 500;
   -moz-transition: all 0.5s ease-in-out 0s;
   -ms-transition: all 0.5s ease-in-out 0s;
   -o-transition: all 0.5s ease-in-out 0s;
@@ -105,7 +112,7 @@
   padding: 20px;
   width: 300px;
   border-radius: 8px;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .info-card h4 {
@@ -121,7 +128,7 @@
 
 .info-text {
   flex: 1;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .info-text h4 {
@@ -130,15 +137,26 @@
 }
 
 .info-text p {
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+@media (max-width: 991px) {
+  .info-section {
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .info-card {
+    width: 100%;
+  }
 }
 
 h3.highlight {
   color: #6c757d;
 }
 .post-meta ul li {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   margin-left: 8px;
   margin-right: 8px;
