@@ -113,16 +113,24 @@
   width: 300px;
   border-radius: 8px;
   font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .info-card h4 {
   margin: 16px 0 4px;
+  font-size: 18px;
   font-weight: bold;
+}
+
+.info-card h4:first-child {
+  margin-top: 0;
 }
 
 .info-card p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
 }
 
@@ -139,6 +147,7 @@
 .info-text p {
   font-size: 18px;
   line-height: 1.7;
+  text-wrap: pretty;
 }
 
 @media (max-width: 991px) {
@@ -150,6 +159,39 @@
   .info-card {
     width: 100%;
   }
+
+  .case-study-cta {
+    padding: 0 24px 40px;
+  }
+}
+
+.case-study-cta {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+  text-align: center;
+}
+
+.case-study-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background-color: #68a08b;
+  color: #fff !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.case-study-btn:hover,
+.case-study-btn:focus {
+  background-color: #4d7d69;
+  color: #fff !important;
+  transform: translateY(-2px);
 }
 
 h3.highlight {
