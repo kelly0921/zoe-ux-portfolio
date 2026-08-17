@@ -600,7 +600,7 @@ nav ul li a {
   position: relative;
 }
 
-.journal-block .journal-info .journal-txt h4 a {
+.journal-block .journal-info .journal-txt h4 {
   display: block;
   font-size: 18px;
   line-height: 25px;
@@ -614,7 +614,7 @@ nav ul li a {
   transition: all 0.5s ease-in-out 0s;
 }
 
-.journal-block .journal-info .journal-txt h4 a:hover {
+.journal-block .journal-info:hover .journal-txt h4 {
   color: #68a08b;
   -moz-transition: all 0.5s ease-in-out 0s;
   -ms-transition: all 0.5s ease-in-out 0s;
@@ -637,12 +637,14 @@ nav ul li a {
 }
 
 .journal-info {
+  display: block;
   overflow: hidden;
   padding: 16px; /* adds space between image/text and the edge */
   background-color: white; /* optional: creates a card effect */
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* subtle default shadow */
+  cursor: pointer;
 }
 
 .journal-info img {
