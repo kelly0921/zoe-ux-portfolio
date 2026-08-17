@@ -137,14 +137,19 @@
 .info-text {
   flex: 1;
   font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
 }
 
 .info-text h4 {
-  margin-top: 0;
+  margin: 0;
   font-size: 18px;
 }
 
 .info-text p {
+  margin: 0;
   font-size: 18px;
   line-height: 1.7;
   text-wrap: pretty;
