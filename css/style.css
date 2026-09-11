@@ -587,6 +587,10 @@ nav ul li a {
   width: 100%;
 }
 
+.journal-block .row {
+  align-items: flex-start;
+}
+
 #journal .journal-block .journal-info {
   position: relative;
 }
@@ -627,6 +631,22 @@ nav ul li a {
   margin: 0;
   font-size: 16px;
   line-height: 28px;
+}
+
+.journal-info.card-two-line .journal-txt h4 {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.journal-info.card-two-line:hover .journal-txt h4 {
+  color: #292929;
+}
+
+.journal-info.card-two-line .journal-txt .card-subtitle {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999999;
 }
 
 .journal-block .journal-info img {
