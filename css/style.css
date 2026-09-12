@@ -689,6 +689,29 @@ nav ul li a {
   margin-bottom: 40px;
 }
 
+.journal-block .col-lg-4,
+.journal-block .col-md-6 {
+  opacity: 0;
+  transform: translate(var(--fx, 0px), var(--fy, 50px)) rotate(var(--frot, 0deg));
+  transition: opacity 0.7s ease-out, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: var(--fdelay, 0s);
+}
+
+#projects.in-view .journal-block .col-lg-4,
+#projects.in-view .journal-block .col-md-6 {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journal-block .col-lg-4,
+  .journal-block .col-md-6 {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .journal-info {
   will-change: transform;
 }
