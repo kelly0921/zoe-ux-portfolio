@@ -1,6 +1,11 @@
 /*  General Styling
 /*-----------------------------------------------------------------------------------*/
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   background: #ffffff;
   color: #898989;
