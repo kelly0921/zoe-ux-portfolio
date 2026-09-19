@@ -673,6 +673,10 @@ nav ul li a {
   -webkit-tap-highlight-color: transparent;
 }
 
+.journal-info:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .journal-info img {
   width: 100%;
   height: auto;
