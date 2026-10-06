@@ -32,7 +32,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
 }
 
-#projects .section-title h2,
 #contact h2 {
   text-transform: none;
   letter-spacing: normal;
@@ -414,6 +413,7 @@ nav ul li a {
   max-width: 80%;
   margin-bottom: 0;
   text-align: left;
+  text-wrap: pretty; /* avoids one-word last lines (orphans) */
 }
 
 #about .about-descr p:last-child {
@@ -639,36 +639,47 @@ nav ul li a {
 }
 
 .journal-info.card-two-line .journal-txt h4 {
-  font-weight: 700;
-  margin-bottom: 0;
+  margin: 10px 0 0 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f2b22;
 }
 
 .journal-info.card-two-line:hover .journal-txt h4 {
-  color: #292929;
+  color: #0f2b22;
 }
 
 .journal-info.card-two-line .journal-txt .card-subtitle {
-  margin: 0 0 4px 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: #999999;
+  display: inline-block;
+  margin: 0;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #ffffff;
+  background-color: #68a08b; /* landing page teal */
+  border-radius: 999px;
+}
+
+.card-thumb {
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 .journal-block .journal-info img {
-  width: 100%; /* Maintain responsiveness */
-  height: 200px; /* Set a fixed height */
-  object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
-  border-radius: 5px; /* Optional: Adds rounded corners */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* matches the project cover images */
+  object-fit: cover;
 }
 
 .journal-info {
   display: block;
   overflow: hidden;
-  padding: 16px; /* adds space between image/text and the edge */
-  background-color: white; /* optional: creates a card effect */
-  border-radius: 12px;
+  padding: 12px;
+  background-color: white;
+  border-radius: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* subtle default shadow */
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -682,16 +693,15 @@ nav ul li a {
   height: auto;
   transition: transform 0.3s ease;
   display: block;
-  border-radius: 8px; /* slightly round corners on image */
 }
 
 .journal-info:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* deeper shadow on hover */
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(47, 93, 78, 0.18); /* soft green-tinted shadow */
 }
 
 .journal-info:hover img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .journal-block .col-lg-4,
@@ -724,6 +734,53 @@ nav ul li a {
 
 .journal-info {
   will-change: transform;
+}
+
+/* Featured Projects: soft sage tint */
+#projects {
+  background-color: #eef4f1;
+}
+
+#projects .section-title {
+  margin-bottom: 48px;
+}
+
+#projects .section-eyebrow {
+  margin: 0 0 8px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2f5d4e;
+}
+
+#projects .section-title h2 {
+  font-size: 48px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.32px; /* same tracking as the hero heading */
+  color: #0f2b22;
+}
+
+/* match the hero heading, which drops to 32px below 992px */
+@media (max-width: 991px) {
+  #projects .section-title h2 {
+    font-size: 32px;
+  }
+}
+
+.journal-block .journal-info .journal-txt {
+  padding: 16px 8px 8px;
+}
+
+/* equal-height cards in each row */
+#projects .journal-block .row {
+  align-items: stretch;
+}
+
+#projects .journal-info {
+  height: 100%;
 }
 
 /*-----------------------------------------------------------------------------------*/
