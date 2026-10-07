@@ -353,18 +353,23 @@ nav ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* underline grows in on hover, same as the Get in Touch links */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 8px;
+  transition: background-size 0.3s ease;
+}
+
+.header-content .list-social li a:hover,
+.header-content .list-social li a:focus-visible {
+  background-size: 100% 2px;
 }
 
 .icon-svg {
   width: 20px;
   height: 20px;
-}
-
-.icon-svg-inline {
-  width: 19px;
-  height: 19px;
-  vertical-align: -4px;
-  margin-right: 4px;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -799,7 +804,26 @@ nav ul li a {
 }
 
 .contact-details li {
-  padding-bottom: 10px;
+  padding-bottom: 14px;
+}
+
+/* gray text links, same as the About text; underline grows in on hover */
+.contact-details a {
+  font-size: 18px;
+  font-weight: 300;
+  color: #999999;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: color 0.3s ease, background-size 0.3s ease;
+}
+
+.contact-details a:hover,
+.contact-details a:focus-visible {
+  color: #292929;
+  background-size: 100% 2px;
 }
 
 #contact input, #contact textarea {
