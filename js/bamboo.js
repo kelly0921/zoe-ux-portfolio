@@ -55,8 +55,9 @@
     joints.forEach(function (y, i) {
       if (i < 1) return;
       var side = (i + k) % 2 ? 1 : -1;
-      leaves.push({ el: addLeaf(parent, s.x + side * s.w / 2, y, side, 1.1, colors.leaf), y: y });
-      if (i % 3 === 0) leaves.push({ el: addLeaf(parent, s.x - side * s.w / 2, y + 5, -side, 0.85, colors.leafAlt), y: y });
+      var size = s.leaf || 1;
+      leaves.push({ el: addLeaf(parent, s.x + side * s.w / 2, y, side, 1.1 * size, colors.leaf), y: y });
+      if (i % 3 === 0) leaves.push({ el: addLeaf(parent, s.x - side * s.w / 2, y + 5, -side, 0.85 * size, colors.leafAlt), y: y });
     });
     return leaves;
   }
@@ -67,9 +68,29 @@
   hero.appendChild(box);
   var stalks = [];
 
+  // Phones: two short stalks on each side of the scroll-down button, kept below the social icons.
+  function phoneStalks(W, H) {
+    var heroBox = hero.getBoundingClientRect();
+    var icons = hero.querySelector('.list-social');
+    var arrow = hero.querySelector('.scroll-down');
+    var room = icons ? heroBox.bottom - icons.getBoundingClientRect().bottom - 32 : H * 0.3;
+    var f = Math.max(0.15, Math.min(0.4, room / H));
+    var gapL = arrow ? arrow.getBoundingClientRect().left - heroBox.left - 8 : W * 0.35;
+    var gapR = arrow ? arrow.getBoundingClientRect().right - heroBox.left + 8 : W * 0.65;
+    return [
+      { x: Math.round(gapL * 0.28), w: 12, max: f, base: f * 0.55, rate: f * 0.6 },
+      { x: Math.round(gapL * 0.72), w: 10, max: f * 0.72, base: f * 0.4, rate: f * 0.5 },
+      { x: Math.round(gapR + (W - gapR) * 0.28), w: 10, max: f * 0.8, base: f * 0.45, rate: f * 0.5 },
+      { x: Math.round(gapR + (W - gapR) * 0.72), w: 12, max: f * 0.95, base: f * 0.5, rate: f * 0.6 }
+    ].map(function (s) { s.leaf = 0.75; s.seg = 48; return s; });
+  }
+
   function build() {
     box.innerHTML = '';
-    var W = 360, H = hero.offsetHeight;
+    var phone = window.innerWidth < 768;
+    box.setAttribute('data-size', phone ? 'phone' : window.innerWidth < 1200 ? 'compact' : 'full');
+    var W = phone ? hero.offsetWidth : 360, H = hero.offsetHeight;
+    var specs = phone ? phoneStalks(W, H) : STALKS;
     var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, focusable: 'false' });
     box.appendChild(svg);
     var defs = el('defs', {}, svg);
@@ -78,7 +99,7 @@
     el('rect', { x: -200, y: -200, width: W + 400, height: H + 200 }, el('clipPath', { id: 'bamboo-ground' }, defs));
     var ground = el('g', { 'clip-path': 'url(#bamboo-ground)' }, svg);
 
-    stalks = STALKS.map(function (s, k) {
+    stalks = specs.map(function (s, k) {
       // each stalk leans and sways from its own base, so the bottoms stay planted
       var lean = el('g', { 'class': 'bamboo-lean', style: 'transform-origin:' + s.x + 'px ' + H + 'px' }, ground);
       var sway = el('g', {
@@ -88,7 +109,7 @@
       var clip = el('rect', { x: 0, y: H, width: W, height: H }, el('clipPath', { id: 'bamboo-clip-' + k }, defs));
       var g = el('g', { 'clip-path': 'url(#bamboo-clip-' + k + ')' }, sway);
       // start a little below the edge so a tilted base never shows a gap
-      var joints = drawStalk(g, s.x, s.w, H + 8, H * (1 - s.max), 70 + k * 8, HERO_COLORS);
+      var joints = drawStalk(g, s.x, s.w, H + 8, H * (1 - s.max), s.seg || 70 + k * 8, HERO_COLORS);
       var leaves = addLeaves(sway, s, k, joints, HERO_COLORS);
       return { s: s, clip: clip, leaves: leaves, H: H };
     });

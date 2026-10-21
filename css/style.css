@@ -452,10 +452,22 @@ html.bamboo-dragging * {
   transform: scale(1);
 }
 
-/* hidden where the hero headline would run into it */
+/* small laptops and tablets: a smaller grove tucked into the corner, clear of the headline */
 @media (max-width: 1199px) {
   .bamboo-grove {
-    display: none;
+    right: 2%;
+    transform: scale(0.55);
+    transform-origin: 100% 100%;
+  }
+}
+
+/* phones: short stalks either side of the scroll-down button (laid out by js/bamboo.js) */
+@media (max-width: 767px) {
+  .bamboo-grove {
+    left: 0;
+    right: 0;
+    width: auto;
+    transform: none;
   }
 }
 
