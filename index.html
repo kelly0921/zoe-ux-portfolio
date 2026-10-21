@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css?v=20" rel="stylesheet">
+  <link href="css/style.css?v=22" rel="stylesheet">
 
   <!-- Responsive css -->
   <link href="css/responsive.css" rel="stylesheet">
@@ -134,7 +134,7 @@
       <div class="journal-block">
         <div class="row">
 
-          <div class="col-lg-4 col-md-6" style="--fx: -40px; --fy: 60px; --frot: -6deg; --fdelay: 0s;">
+          <div class="col-lg-4 col-md-6">
             <a href="houseiq.html" class="journal-info card-two-line">
               <div class="card-thumb"><img src="images/houseiq/cover.png" class="img-responsive" alt="img"></div>
               <div class="journal-txt">
@@ -144,7 +144,7 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6" style="--fx: 40px; --fy: 60px; --frot: 6deg; --fdelay: 0.1s;">
+          <div class="col-lg-4 col-md-6">
             <a href="adoptioncare.html" class="journal-info card-two-line">
               <div class="card-thumb"><img src="images/adoptioncare/cover.jpg" class="img-responsive" alt="img"></div>
               <div class="journal-txt">
@@ -154,7 +154,7 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6" style="--fx: -50px; --fy: -40px; --frot: 5deg; --fdelay: 0.2s;">
+          <div class="col-lg-4 col-md-6">
             <a href="fitfind.html" class="journal-info card-two-line">
               <div class="card-thumb"><img src="images/fitfind/FitFind.jpg" class="img-responsive" alt="img"></div>
               <div class="journal-txt">
@@ -164,7 +164,7 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6" style="--fx: 0px; --fy: 70px; --frot: -4deg; --fdelay: 0.3s;">
+          <div class="col-lg-4 col-md-6">
             <a href="preserve.html" class="journal-info card-two-line">
               <div class="card-thumb"><img src="images/preserve/preserve_image.png" class="img-responsive" alt="img"></div>
 
@@ -175,7 +175,7 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6" style="--fx: 50px; --fy: -40px; --frot: -5deg; --fdelay: 0.4s;">
+          <div class="col-lg-4 col-md-6">
             <a href="aramond.html" class="journal-info card-two-line">
               <div class="card-thumb"><img src="images/aramond/poster.png" class="img-responsive" alt="img"></div>
 
@@ -186,7 +186,7 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6" style="--fx: 0px; --fy: 80px; --frot: 4deg; --fdelay: 0.5s;">
+          <div class="col-lg-4 col-md-6">
             <a href="dripperscoffe.html" class="journal-info card-two-line">
               <div class="card-thumb"><img src="images/dripperscoffee/front.jpg" class="img-responsive" alt="img"></div>
 
@@ -251,28 +251,8 @@
   <!-- Template Main Javascript File -->
   <script src="js/main.js?v=2"></script>
 
-  <script>
-    (function () {
-      var projects = document.getElementById('projects');
-      if (!projects) return;
-
-      if (!('IntersectionObserver' in window)) {
-        projects.classList.add('in-view');
-        return;
-      }
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            projects.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      observer.observe(projects);
-    })();
-  </script>
+  <!-- Hero bamboo grove -->
+  <script src="js/bamboo.js"></script>
 
 </body>
 
