@@ -394,6 +394,23 @@ nav ul li a {
   cursor: pointer;
 }
 
+/* leaves can be picked up and dragged off the stalk */
+.bamboo-grove .bamboo-leaf path {
+  cursor: grab;
+  touch-action: none;
+}
+
+.bamboo-leaf.on.plucked {
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+html.bamboo-dragging,
+html.bamboo-dragging * {
+  cursor: grabbing !important;
+  user-select: none;
+}
+
 /* leaves shaken loose by a click */
 .bamboo-falling {
   position: fixed;

@@ -42,7 +42,10 @@
   function addLeaf(parent, x, y, side, size, color) {
     var wrap = el('g', { transform: 'translate(' + x + ' ' + y + ')' }, parent);
     var leaf = el('g', { 'class': 'bamboo-leaf' }, wrap);
-    el('path', { d: LEAF, fill: color, transform: 'scale(' + side * size + ' ' + size + ') rotate(-28)' }, leaf);
+    el('path', {
+      d: LEAF, fill: color, 'data-side': side, 'data-size': size,
+      transform: 'scale(' + side * size + ' ' + size + ') rotate(-28)'
+    }, leaf);
     return leaf;
   }
 
@@ -145,7 +148,90 @@
     }
   }
 
+  // Leaves on the stalks can be picked up and dragged; let go and they flutter down and fade away.
+  // The empty spot grows a new leaf a few seconds later.
+  var drag = null;
+  var justDragged = false;
+
+  function placeHeld(d) {
+    d.held.style.left = d.x + 'px';
+    d.held.style.top = d.y + 'px';
+    d.held.style.transform = 'rotate(' + d.angle.toFixed(1) + 'deg) scale(' + d.side * d.size + ', ' + d.size + ')';
+  }
+
+  box.addEventListener('pointerdown', function (e) {
+    var path = e.target.closest ? e.target.closest('.bamboo-leaf path') : null;
+    if (!path || e.button !== 0) return;
+    e.preventDefault();
+    drag = {
+      group: path.parentNode, color: path.getAttribute('fill'),
+      side: +path.getAttribute('data-side'), size: +path.getAttribute('data-size'),
+      startX: e.clientX, startY: e.clientY, x: e.clientX, y: e.clientY,
+      vx: 0, t: performance.now(), moved: false
+    };
+  });
+
+  window.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    if (!drag.moved) {
+      // a few pixels of movement turns a press into a drag (a plain click still drops a burst)
+      if (Math.abs(e.clientX - drag.startX) + Math.abs(e.clientY - drag.startY) < 5) return;
+      drag.moved = true;
+      drag.group.classList.add('plucked');
+      drag.held = document.createElementNS(NS, 'svg');
+      drag.held.setAttribute('viewBox', '0 -10 48 20');
+      drag.held.setAttribute('class', 'bamboo-falling-leaf');
+      el('path', { d: LEAF, fill: drag.color }, drag.held);
+      falling.appendChild(drag.held);
+      drag.angle = drag.side * -28;
+      document.documentElement.classList.add('bamboo-dragging');
+    }
+    var now = performance.now();
+    drag.vx = (e.clientX - drag.x) / Math.max(16, now - drag.t) * 16;
+    drag.x = e.clientX;
+    drag.y = e.clientY;
+    drag.t = now;
+    // tilt with the direction you move it, easing back toward its resting angle
+    var target = drag.side * -28 + Math.max(-50, Math.min(50, drag.vx * 3));
+    drag.angle += (target - drag.angle) * 0.3;
+    placeHeld(drag);
+  });
+
+  function releaseLeaf() {
+    if (!drag) return;
+    var d = drag;
+    drag = null;
+    if (!d.moved) return;
+    justDragged = true;
+    setTimeout(function () { justDragged = false; }, 0);
+    document.documentElement.classList.remove('bamboo-dragging');
+
+    var leaf = d.held, a = d.angle;
+    var shape = ' scale(' + d.side * d.size + ', ' + d.size + ')';
+    var anim;
+    if (reduceMotion) {
+      anim = leaf.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, easing: 'ease-out' });
+    } else {
+      var drift = d.vx * 12 + (Math.random() - 0.5) * 80;
+      var fall = 220 + Math.random() * 160;
+      var sway = (Math.random() < 0.5 ? -1 : 1) * (25 + Math.random() * 25);
+      var turn = (d.vx >= 0 ? 1 : -1) * (160 + Math.random() * 200);
+      anim = leaf.animate([
+        { transform: 'translate(0, 0) rotate(' + a + 'deg)' + shape, opacity: 1 },
+        { transform: 'translate(' + (drift * 0.4 + sway) + 'px, ' + fall * 0.4 + 'px) rotate(' + (a + turn * 0.4) + 'deg)' + shape, opacity: 1, offset: 0.4 },
+        { transform: 'translate(' + (drift * 0.75 - sway) + 'px, ' + fall * 0.75 + 'px) rotate(' + (a + turn * 0.75) + 'deg)' + shape, opacity: 0.8, offset: 0.75 },
+        { transform: 'translate(' + drift + 'px, ' + fall + 'px) rotate(' + (a + turn) + 'deg)' + shape, opacity: 0 }
+      ], { duration: 1800 + Math.random() * 700, easing: 'cubic-bezier(0.25, 0.6, 0.4, 1)' });
+    }
+    anim.onfinish = function () { leaf.remove(); };
+    setTimeout(function () { d.group.classList.remove('plucked'); }, 4000);
+  }
+
+  window.addEventListener('pointerup', releaseLeaf);
+  window.addEventListener('pointercancel', releaseLeaf);
+
   box.addEventListener('click', function (e) {
+    if (justDragged) return;
     dropLeaves(e.clientX, e.clientY);
   });
 
