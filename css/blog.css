@@ -158,6 +158,12 @@
   margin-bottom: 0;
 }
 
+/* space between the intro box and the write-up that follows it */
+.info-section + h2,
+.info-section + img {
+  margin-top: 48px;
+}
+
 @media (max-width: 991px) {
   .info-section {
     flex-direction: column;

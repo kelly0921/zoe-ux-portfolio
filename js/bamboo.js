@@ -30,6 +30,7 @@
     var joints = [];
     for (var y = bottom; y > top; y -= seg) {
       var t = Math.max(top, y - seg);
+      if (y - t < 6) break; // skip a sliver of a segment at the very top
       // square segment ends (tiny rx) so the stalk looks cut, not rounded
       el('rect', { x: x - w / 2, y: t + 2, width: w, height: y - t - 2, rx: 1.5, fill: colors.stalk }, g);
       el('rect', { x: x - w / 2 - 2, y: t, width: w + 4, height: 4, rx: 2, fill: colors.joint }, g);
