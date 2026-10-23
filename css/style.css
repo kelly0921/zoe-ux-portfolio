@@ -461,13 +461,10 @@ html.bamboo-dragging * {
   }
 }
 
-/* phones: short stalks either side of the scroll-down button (laid out by js/bamboo.js) */
+/* phones: no bamboo for now (js/bamboo.js still has a phone layout if we bring it back) */
 @media (max-width: 767px) {
   .bamboo-grove {
-    left: 0;
-    right: 0;
-    width: auto;
-    transform: none;
+    display: none;
   }
 }
 
