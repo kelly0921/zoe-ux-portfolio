@@ -905,6 +905,15 @@ html.bamboo-dragging * {
   width: 100%;
 }
 
+#contact.paddsection {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+#contact .contact-contact {
+  margin-bottom: 0;
+}
+
 .contact-details {
   list-style: none;
   margin: 0;
