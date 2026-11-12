@@ -169,14 +169,35 @@ p {
 
 nav {
   position: fixed;
-  background: #fff;
+  /* slightly see-through; the blur keeps the links readable over the green hero and photos */
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   z-index: 1000;
   width: 100%;
   padding: 20px;
-  display: none;
   -webkit-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
   -moz-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
   box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
+}
+
+/* logo and links sit near the window edges instead of in the 1140px page column */
+nav .container {
+  max-width: none;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+nav .nav-menu li:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 767px) {
+  nav .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .nav-menu {
@@ -189,22 +210,44 @@ nav {
 nav ul li {
   float: left;
   margin-right: 15px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  margin-left: 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  margin-left: 60px;
 }
 
 nav ul li a {
-  padding: 2px 0 0 0;
+  padding: 2px 0 2px 0;
   position: relative;
   display: block;
-  font-size: 14px;
-  color: #999999;
-  font-family: 'Poppins', helvetica;
-  font-weight: 400;
+  font-size: 15px;
+  color: #68a08b; /* same sage as the logo */
+  font-family: 'Inter', sans-serif; /* labels use Inter, like SELECTED WORK */
+  font-weight: 500;
   line-height: 16px;
   letter-spacing: 0.02em;
   text-transform: capitalize;
+  /* underline grows in on hover, same as the Get in Touch links */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.3s ease, background-size 0.3s ease;
+}
+
+/* a clicked link goes back to the logo green once the page has scrolled to its section */
+nav ul li a.active {
+  color: #68a08b;
+}
+
+/* darker sage on hover and for keyboard focus, like the case study buttons */
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  color: #4d7d69;
+}
+
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  background-size: 100% 2px;
 }
 
 .logo {
@@ -235,45 +278,6 @@ nav ul li a {
   min-height: 90vh;
   width: 100%;
   position: relative;
-}
-
-.scroll-down {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 12px;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 1.3;
-  transition: color 0.3s ease-in-out;
-}
-
-.scroll-down:hover, .scroll-down:focus {
-  color: #fff;
-}
-
-.scroll-down svg {
-  animation: scroll-down-bounce 1.6s ease-in-out infinite;
-}
-
-@keyframes scroll-down-bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(4px);
-  }
 }
 
 
@@ -311,55 +315,21 @@ nav ul li a {
 }
 
 .header-content p {
-  font-size: 18px;
+  font-size: 21px;
   line-height: 1.7;
   letter-spacing: 0.01em;
   margin-top: 0;
   margin-bottom: 20px;
-  max-width: 480px;
-  text-wrap: balance;
-  color: #fff;
-  font-weight: 200;
+  max-width: 720px;
+  color: #c6e1d5; /* close to the bamboo stalk green, so the tagline sits back behind the headline */
+  font-weight: 300;
 }
 
-.header-content .list-social li {
-  float: left;
-  margin-right: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-content .list-social li .icon-svg {
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  display: block;
-  transition: transform 0.25s ease;
-}
-
-.header-content .list-social li a:hover .icon-svg {
-  transform: scale(1.2);
-}
-
-.header-content .list-social li a {
-  font-size: 20px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* underline grows in on hover, same as the Get in Touch links */
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 2px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 8px;
-  transition: background-size 0.3s ease;
-}
-
-.header-content .list-social li a:hover,
-.header-content .list-social li a:focus-visible {
-  background-size: 100% 2px;
+/* desktop and tablet break the tagline after "turn the mundane"; phones wrap it naturally */
+@media (max-width: 767px) {
+  .header-content .tagline-break {
+    display: none;
+  }
 }
 
 .icon-svg {
@@ -509,8 +479,10 @@ html.bamboo-dragging * {
 }
 
 #about .about-descr .p-heading {
+  font-family: 'Inter', sans-serif; /* headings use Inter */
   font-weight: 600;
   font-size: 28px;
+  text-transform: uppercase;
   text-align: left;
   padding-top: 15px;
   margin-top: 0;
@@ -760,6 +732,7 @@ html.bamboo-dragging * {
   display: inline-block;
   margin: 0;
   padding: 4px 12px;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;

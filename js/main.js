@@ -30,7 +30,8 @@ $(document).ready(function() {
     $('html, body').stop().animate({
       'scrollTop': target.offset().top - 80
     }, 500, 'swing', function() {
-      window.location.hash = target.selector;
+      // show the section in the address bar (e.g. #about) without jumping past the nav bar
+      history.replaceState(null, "", menu);
       $(document).on("scroll", onScroll);
     });
   });
@@ -51,17 +52,8 @@ $(document).ready(function() {
   // ========================================================================= //
 
 
-  $(window).scroll(function() {
-    var scroll = $(window).scrollTop();
-    if (scroll > 200 ) {
-      $("#main-nav, #main-nav-subpage").slideDown(700);
-      $("#main-nav-subpage").removeClass('subpage-nav');
-    } else {
-      $("#main-nav").slideUp(700);
-      $("#main-nav-subpage").hide();
-      $("#main-nav-subpage").addClass('subpage-nav');
-    }
-  });
+  // The nav bar is always shown and fixed to the top (see nav in css/style.css),
+  // so there is no scroll-based show/hide here anymore.
 
   // ========================================================================= //
   //  // RESPONSIVE MENU

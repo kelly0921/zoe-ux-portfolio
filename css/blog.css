@@ -3,9 +3,14 @@
 /*  -  Navbar fixd page
 /*-----------------------------------------------------------------------------------*/
 
+/* case study pages: the nav stays fixed at the top like on the home page;
+   the content starts below it instead of underneath */
 .subpage-nav {
-  display: block !important;
-  position: relative;
+  display: block;
+}
+
+.subpage-nav ~ .main-content {
+  margin-top: 89px;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -121,7 +126,7 @@
 .info-card h4 {
   margin: 16px 0 4px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600; /* same weight as the home page headings */
 }
 
 .info-card h4:first-child {
@@ -145,6 +150,10 @@
 .info-text h4 {
   margin: 0 0 8px 0;
   font-size: 18px;
+}
+
+.info-text h4 strong {
+  font-weight: 600;
 }
 
 .info-text p {
