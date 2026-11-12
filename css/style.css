@@ -224,8 +224,8 @@ nav ul li a {
   font-family: 'Inter', sans-serif; /* labels use Inter, like SELECTED WORK */
   font-weight: 500;
   line-height: 16px;
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   /* underline grows in on hover, same as the Get in Touch links */
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0% 2px;
