@@ -553,7 +553,8 @@ strong {
     padding: 16px 16px 8px;
   }
 
-  .main-content .block-main {
+  /* no gray strip under the slides: the white column runs to the bottom of the page */
+  .main-content .container-main .block-main {
     margin-bottom: 0;
   }
 
