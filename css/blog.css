@@ -13,6 +13,12 @@
   margin-top: 89px;
 }
 
+@media (max-width: 991px) {
+  .subpage-nav ~ .main-content {
+    margin-top: 64px; /* the shorter phone and tablet nav bar */
+  }
+}
+
 /*-----------------------------------------------------------------------------------*/
 
 /*  /* Single page */
@@ -226,6 +232,7 @@
 
 .slide-frame {
   aspect-ratio: 16 / 9;
+  position: relative;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -293,6 +300,127 @@
 
 .slide-file-link:hover {
   color: #4d7d69 !important;
+}
+
+/* expand button in the corner of the slide */
+.slide-expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none; /* phones and tablets only, see below */
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(41, 41, 41, 0.6);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.slide-expand:hover,
+.slide-expand:focus-visible {
+  background: rgba(41, 41, 41, 0.85);
+}
+
+.slide-viewer svg path,
+.slide-lightbox svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* full screen slide view */
+.slide-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 56px 12px 24px;
+  background: #111;
+}
+
+.slide-lightbox[hidden] {
+  display: none;
+}
+
+.slide-lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100% - 72px);
+  object-fit: contain;
+  user-select: none;
+}
+
+.slide-lightbox .slide-count {
+  color: #ddd;
+}
+
+/* upright phones: a wide slide only gets bigger when the phone is turned sideways */
+.slide-lightbox-hint {
+  display: none;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #999;
+}
+
+@media (orientation: portrait) and (max-width: 767px) {
+  .slide-lightbox-hint {
+    display: block;
+  }
+}
+
+/* sideways phones: less padding so the slide can use most of the short screen */
+@media (max-height: 500px) {
+  .slide-lightbox {
+    gap: 8px;
+    padding: 8px 56px;
+  }
+
+  .slide-lightbox img {
+    max-height: calc(100% - 48px);
+  }
+
+  .slide-lightbox .slide-controls {
+    margin-top: 0;
+  }
+}
+
+.slide-lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.slide-lightbox-close svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* the page behind the full screen view does not scroll */
+html.slide-lightbox-open,
+html.slide-lightbox-open body {
+  overflow: hidden;
 }
 
 h3.highlight {
@@ -396,4 +524,54 @@ blockquote {
 
 strong {
   font-weight: bold;
+}
+/* ---------- Full screen slides: phones and tablets only, desktop stays as it was ---------- */
+@media (max-width: 991px) {
+  .slide-expand {
+    display: inline-flex;
+  }
+
+  .slide-frame img {
+    cursor: zoom-in;
+  }
+}
+
+/* ---------- Case study pages on phones ---------- */
+/* drop the gray margins and stacked padding so text and slides use nearly the full width */
+@media (max-width: 767px) {
+  .main-content.paddsection {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .main-content .single-main .col-md-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .main-content .content-main.padDiv {
+    padding: 16px 16px 8px;
+  }
+
+  .main-content .block-main {
+    margin-bottom: 0;
+  }
+
+  .info-section {
+    padding: 16px 0 0;
+    gap: 24px;
+  }
+
+  /* slides run edge to edge */
+  .slide-viewer {
+    margin-top: 24px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .slide-frame {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
 }

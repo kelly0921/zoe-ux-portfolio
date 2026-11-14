@@ -14,12 +14,8 @@ $(document).ready(function() {
     e.preventDefault();
     $(document).off("scroll");
 
-    $('a').each(function() {
-      $(this).removeClass('active');
-      if ($(window).width() < 768) {
-        $('.nav-menu').slideUp();
-      }
-    });
+    $('a').removeClass('active');
+    closeMenu();
 
     $(this).addClass('active');
 
@@ -59,8 +55,17 @@ $(document).ready(function() {
   //  // RESPONSIVE MENU
   // ========================================================================= //
 
-  $('.responsive').on('click', function(e) {
+  // phones and tablets: the menu button opens and closes the list of links
+  function closeMenu() {
+    if ($('.responsive').attr('aria-expanded') !== 'true') return;
+    $('.nav-menu').slideUp();
+    $('.responsive').attr({ 'aria-expanded': 'false', 'aria-label': 'Open menu' });
+  }
+
+  $('.responsive').on('click', function() {
+    var open = $(this).attr('aria-expanded') === 'true';
     $('.nav-menu').slideToggle();
+    $(this).attr({ 'aria-expanded': open ? 'false' : 'true', 'aria-label': open ? 'Open menu' : 'Close menu' });
   });
 
   // ========================================================================= //

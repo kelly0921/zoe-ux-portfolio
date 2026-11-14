@@ -325,8 +325,8 @@ nav ul li a:focus-visible {
   font-weight: 300;
 }
 
-/* desktop and tablet break the tagline after "turn the mundane"; phones wrap it naturally */
-@media (max-width: 767px) {
+/* wide screens break the tagline after "turn the mundane"; phones and tablets wrap it naturally */
+@media (max-width: 991px) {
   .header-content .tagline-break {
     display: none;
   }

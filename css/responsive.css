@@ -373,3 +373,90 @@
     margin-right: 0;
   }
 }
+
+/* ---------- Nav bar on phones and tablets ---------- */
+/* a shorter bar (about 64px), a visible menu button, and a full-width list of links */
+@media (max-width: 991px) {
+  nav {
+    padding: 11px 15px; /* the 15px sides balance the row's negative margins */
+  }
+
+  nav .logo img {
+    width: 40px;
+  }
+
+  nav .responsive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    width: 44px;
+    height: 44px;
+    margin-top: -2px;
+    margin-right: -10px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #68a08b;
+    cursor: pointer;
+  }
+
+  /* show the focus ring for keyboard users only, not after a tap */
+  nav .responsive:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  nav .responsive svg path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  nav .responsive .icon-close,
+  nav .responsive[aria-expanded="true"] .icon-open {
+    display: none;
+  }
+
+  nav .responsive[aria-expanded="true"] .icon-close {
+    display: inline;
+  }
+
+  nav .nav-menu {
+    clear: both;
+    margin-top: 0;
+    padding-top: 20px; /* space between the logo and HOME */
+    line-height: normal;
+  }
+
+  nav .nav-menu li,
+  nav .nav-menu li:last-child {
+    float: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 0;
+    text-align: left;
+    line-height: normal;
+  }
+
+  nav .nav-menu li a {
+    display: inline-block;
+    padding: 11px 0 9px;
+    font-size: 13px;
+  }
+}
+
+/* desktop: always show the links, even if the menu was closed on a smaller window */
+@media (min-width: 992px) {
+  nav .nav-menu {
+    display: block !important;
+  }
+}
+
+/* ---------- Home page hero on phones ---------- */
+@media (max-width: 767px) {
+  .header-content p {
+    font-size: 18px;
+  }
+}
